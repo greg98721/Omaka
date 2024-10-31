@@ -1,7 +1,66 @@
 # Omaka
+Sandbox Angular/Nestjs application using dev containers and nx for build management
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## Prerequisites
+### Windows PCs
+1) Ensure HyperV is enabled both in BIOS and Windows
+2) Install WSL2
+3) Install Docker Desktop
+4) Install Visual Studio Code
+5) Add the Remote Development set of extensions to VS Code
 
+### MacOS
+TBD.
+
+
+## nx Workspace
+
+First step is to create the nx workspace. This will be the container for the Angular and Nestjs applications.
+
+First create a code folder in the WSL2 portion of the hard drive. This is where the code will be stored and where the dev container will be mounted.
+Even though we will be using containers, they are more efficient mounting a Linux folder than a Windows folder outside of WSL2.
+
+Then create the nx workspace in the code folder. The workspace will be called Omaka.
+
+```sh
+npx create-nx-workspace@latest Omaka --package-manager=pnpm
+```
+
+Select the angular application. Will add the nestjs application later.
+
+
+## Dev Container
+The development environment will exist in a Docker container that can be used in any environment meeting the prerequisites above. Open the workspace folder in VS Code and create a dev container configuration file.
+
+
+1) Add Dev Container Configuration Files: Nodejs & Javascript. Will add Typescript, Angular CLI, Nest CLI, pnpm and nx as a features.
+2) Add the VS Code extensions to the dev container configuration file.
+3) Open the repository as a container in VS Code.
+4) Add the list of recommended extensions to the dev container configuration file. - see the devcontainer.json file in the .devcontainer folder for the extensions.
+5) Forward the port 4000 in the dev container to the host machine for running Angular app in the host browser.
+6) Update the name of the dev container in the devcontainer.json file.
+7) Rebuild the dev container
+
+At this stage you now have an dev container with a monorepos with an angular application and the necessary tools to start building the application.
+
+
+## Repository
+Create an empty repository in GitHub and push the local code to the repository.
+
+```sh
+git remote add origin https://github.com/<user name>/Omaka.git
+git push -u origin main
+```
+
+## Nestjs Server Project
+Create a nestjs project in the nx workspace.
+
+```sh
+pnpm add @nx/nest
+nx generate @nx/nest:app apps/omaka-server
+```
+
+# nx
 ✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
 
 [Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
