@@ -58,10 +58,15 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "omaka-client:build:production"
+          "buildTarget": "omaka-client:build:production",
+          "host": "0.0.0.0",
+          "port": 4200
         },
         "development": {
-          "buildTarget": "omaka-client:build:development"
+          "buildTarget": "omaka-client:build:development",
+          "inspect": "inspect",
+          "host": "0.0.0.0",
+          "port": 4200
         }
       },
       "defaultConfiguration": "development"
@@ -86,6 +91,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "omaka-client:build",
+        "host": "0.0.0.0",
         "port": 4200,
         "staticFilePath": "dist/apps/omaka-client/browser",
         "spa": true

@@ -40,8 +40,15 @@ The development environment will exist in a Docker container that can be used in
 5) Forward the port 4000 in the dev container to the host machine for running Angular app in the host browser.
 6) Update the name of the dev container in the devcontainer.json file.
 7) Rebuild the dev container
-
+8) Allow the angular dev server access to the host browser by adding the following to the project.json file in the omaka-client project at targets/serve/configurations/development section. And the same in the production section without the inspect option.
+```json
+          "inspect": "inspect",
+          "host": "0.0.0.0",
+          "port": 4200
+```
 At this stage you now have an dev container with a monorepos with an angular application and the necessary tools to start building the application.
+
+
 
 
 ## Repository
